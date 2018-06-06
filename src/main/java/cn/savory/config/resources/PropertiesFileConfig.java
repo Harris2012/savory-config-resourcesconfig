@@ -26,6 +26,7 @@ public class PropertiesFileConfig extends BasicConfig {
     public PropertiesFileConfig(String filePath) {
         if (filePath.startsWith("/")) {
             this.filePath = filePath;
+            return;
         }
 
         this.filePath = "/" + filePath;

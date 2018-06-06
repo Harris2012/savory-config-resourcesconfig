@@ -12,4 +12,14 @@
     <artifactId>savory-config-resourcesconfig</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.savory</groupId>
+            <artifactId>savory-config</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
 </project>

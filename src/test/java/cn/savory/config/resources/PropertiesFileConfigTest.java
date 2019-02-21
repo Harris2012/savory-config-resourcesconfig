@@ -30,6 +30,15 @@ public class PropertiesFileConfigTest {
             boolean actual = config.getBooleanProperty("isboy", false);
             Assert.assertEquals(expected, actual);
         }
+
+        {
+            String[] expected = new String[]{"math", "english", "chinese"};
+            String[] actual = config.getArrayProperty("subject", ",", null);
+            Assert.assertEquals(expected.length, actual.length);
+            for (int i = 0; i < expected.length; i++) {
+                Assert.assertEquals(expected[i], actual[i]);
+            }
+        }
     }
 
 

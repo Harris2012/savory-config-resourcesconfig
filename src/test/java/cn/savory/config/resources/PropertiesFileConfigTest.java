@@ -1,5 +1,8 @@
 package cn.savory.config.resources;
 
+import cn.savory.config.ISavoryMapConfig;
+import cn.savory.config.SavoryConfigService;
+import cn.savory.config.SavoryConfigServiceFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,35 +14,26 @@ public class PropertiesFileConfigTest {
     @Test
     public void getProperty() throws Exception {
 
-        PropertiesFileConfig config = new PropertiesFileConfig("basic.properties");
+        SavoryConfigService savoryConfigService = SavoryConfigServiceFactory.getSavoryConfigService(new ResourceContentLoader());
+
+        ISavoryMapConfig mapConfig = savoryConfigService.getMapConfig("basic.properties");
 
         {
             String expected = "tom";
-            String actual = config.getProperty("name");
+            String actual = mapConfig.getString("name");
             Assert.assertEquals(expected, actual);
         }
 
         {
             int expected = 18;
-            int actual = config.getIntProperty("age", 17);
+            int actual = mapConfig.getIntProperty("age", 17);
             Assert.assertEquals(expected, actual);
         }
 
         {
             boolean expected = true;
-            boolean actual = config.getBooleanProperty("isboy", false);
+            boolean actual = mapConfig.getBooleanProperty("isboy", false);
             Assert.assertEquals(expected, actual);
         }
-
-        {
-            String[] expected = new String[]{"math", "english", "chinese"};
-            String[] actual = config.getArrayProperty("subject", ",", null);
-            Assert.assertEquals(expected.length, actual.length);
-            for (int i = 0; i < expected.length; i++) {
-                Assert.assertEquals(expected[i], actual[i]);
-            }
-        }
     }
-
-
 }
